@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>BaconGame</title>
+    <style>
+        html, body{
+            background: #ccc;
+        }
+        #game{
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            margin-top: -300px;
+            margin-left: -200px;
+        }
+    </style>
+</head>
+<body>
+    <div style="text-align: center;margin-top: 20px;">
+        วิธีเล่น : กดปุ่ม spacebar เพื่อกระโดดข้ามเบคอนไปให้ได้
+    </div>
+    <div id="game"></div>
+    <script>
+    var el = document.getElementsByTagName("canvas")[0];
+    el.addEventListener("touchstart", handleStart);
+    el.addEventListener("touchmove", handleMove);
+    el.addEventListener("touchend", handleEnd);
+    el.addEventListener("touchcancel", handleCancel);
+    document.addEventListener("touchstart", touchHandler);
+    document.addEventListener("touchmove", touchHandler);
+    function touchHandler(e) {
+        if(e.touches) {
+            playerX = e.touches[0].pageX - canvas.offsetLeft - playerWidth / 2;
+            playerY = e.touches[0].pageY - canvas.offsetTop - playerHeight / 2;
+            output.innerHTML = "Touch: "+ " x: " + playerX + ", y: " + playerY;
+            e.preventDefault();
+        }
+        alert('touchHandler');
+    }
+
+    </script>
+    <script src="vendor/phaser.js"></script>
+    <script src="main.js"></script>
+</body>
+</html>
